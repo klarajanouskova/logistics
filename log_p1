@@ -1,0 +1,117 @@
+(define (problem LOGISTICS-1)
+(:domain logistics)
+(:objects
+	lorry1 - lorry
+	lorry2 - lorry
+	packagelight1 - light-package
+	packageheavy1 - heavy-package
+	driver1 - driver
+	driver2 - driver
+	cityA - city
+	cityB - city
+	cityC - city
+	cityD - city
+	cityE - city
+	craneA - crane
+	craneB - crane
+	craneC - crane
+	craneD - crane
+	)
+
+(:init
+	(at lorry1 cityA)
+	(at lorry2 cityA)
+	(at driver1 cityC)
+	(at driver2 cityD)
+
+	(road cityA cityB)
+	(road cityB cityA)
+
+	(road cityA cityC)
+	(road cityC cityA)
+
+	(road cityB cityC)
+	(road cityC cityB)
+
+	(road cityC cityE)
+	(road cityE cityC)
+
+	(road cityB cityE)
+	(road cityE cityB)
+	
+	(road cityB cityD)
+	(road cityD cityB)
+
+
+	(empty lorry1)
+	(empty lorry2)
+
+	(at packagelight1 cityA)
+	(at packageheavy1 cityD)
+
+	(= (load-time-light) 1)
+	(= (load-cost-light) 2)
+	(= (unload-time-light) 1)
+	(= (unload-cost-light) 2)
+
+	(= (load-time-heavy) 2)
+	(= (load-cost-heavy) 4)
+	(= (unload-time-heavy) 2)
+	(= (unload-cost-heavy) 4)
+
+	(= (get-in-cost) 1)
+	(= (get-of-cost) 2)
+	(= (get-in-time) 1)
+	(= (get-of-time) 2)
+
+	(= (bus-time) 10)
+	(= (bus-cost) 3)
+
+	(= (cost cityA cityB) 1)
+	(= (time cityA cityB) 4)
+	(= (cost cityB cityA) 1)
+	(= (time cityB cityA) 4)
+	
+
+	(= (cost cityA cityC) 1)
+	(= (time cityA cityC) 2)
+	(= (cost cityC cityA) 1)
+	(= (time cityC cityA) 2)
+
+	(= (cost cityC cityE) 6)
+	(= (time cityC cityE) 9)
+	(= (cost cityE cityC) 6)
+	(= (time cityE cityC) 9)
+
+	(= (cost cityB cityC) 3)
+	(= (time cityB cityC) 2)
+	(= (cost cityC cityB) 3)
+	(= (time cityC cityB) 2)
+
+	(= (cost cityB cityE) 3)
+	(= (time cityB cityE) 4)
+	(= (cost cityE cityB) 3)
+	(= (time cityE cityB) 4)
+
+	(= (cost cityB cityD) 1)
+	(= (time cityB cityD) 4)
+	(= (cost cityD cityB) 1)
+	(= (time cityD cityB) 4)
+
+	(= (total-cost) 0)
+)
+
+
+
+(:goal (and
+	(at lorry2 cityA)
+	(at driver1 cityB)
+	(at packageheavy1 cityE)
+	(at packagelight1 cityC)
+	))
+
+(:metric minimize (+ (* 0.2 (total-time)) (* 0.5 (total-cost))))
+
+
+)
+
